@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Okad browser check</title>
+<style>
+  body { margin: 0; font-family: sans-serif; background: #f4f4f4; }
+  .banner { background: #d6336c; color: #fff; font-size: 56px; font-weight: 700; padding: 40px; }
+  main { padding: 24px; }
+  input { font-size: 22px; padding: 8px; width: 320px; }
+  button { font-size: 22px; padding: 8px 18px; margin-left: 8px; }
+  #status { margin-top: 20px; font-size: 22px; color: #2b8a3e; }
+</style>
+</head>
+<body>
+  <div class="banner">TEAL HERON 318</div>
+  <main>
+    <form id="form">
+      <input id="name" name="name" placeholder="Your name">
+      <button type="submit" id="save">Save</button>
+    </form>
+    <button type="button" id="ping">Ping</button>
+    <div id="status">Idle</div>
+    <canvas id="art" width="360" height="90" style="margin-top:16px;border:2px solid #222"></canvas>
+  </main>
+  <script>
+    console.log('okad-check: page loaded');
+        const ctx = document.getElementById('art').getContext('2d');
+    ctx.fillStyle = '#ffd43b';
+    ctx.fillRect(0, 0, 360, 90);
+    ctx.fillStyle = '#1c7ed6';
+    ctx.font = 'bold 40px sans-serif';
+    ctx.fillText(String.fromCharCode(79,82,67,72,73,68,32,55,55), 20, 60);
+    document.getElementById('ping').addEventListener('click', () => {
+      document.getElementById('status').textContent = 'Clicked ping';
+      console.warn('okad-check: ping clicked');
+    });
+    document.getElementById('form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const value = document.getElementById('name').value;
+      document.getElementById('status').textContent = 'Saved: ' + value;
+      console.error('okad-check: saved ' + value);
+    });
+  </script>
+</body>
+</html>
